@@ -6,11 +6,11 @@
       <!-- Back Button -->
       <button
         @click="goBack"
-        class="mb-4 flex items-center text-blue-600 hover:text-blue-800 text-sm font-medium cursor-pointer group"
+        class="mb-4 flex items-center text-[18px] text-blue-600 hover:text-blue-800 text-sm font-medium cursor-pointer group"
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"
-          class="h-4 w-4 mr-1 transform transition-transform duration-200 group-hover:-translate-x-1"
+          class="h-4 w-4 md:h-5 md:w-5 mr-1 transform transition-transform duration-200 group-hover:-translate-x-1"
           fill="none"
           viewBox="0 0 24 24"
           stroke="currentColor"
@@ -49,17 +49,24 @@
           <div
             class="grid grid-cols-1 gap-4 text-sm xl:text-[16px] text-gray-800"
           >
-            <div
+            <!-- <div
               class="text-sm xl:text-[16px] flex flex-col text-gray-800 font-medium"
             >
               <span class="font-medium text-gray-500">Returns</span>
               {{ returnsPercentage }}
-            </div>
+            </div> -->
+            <DetailRow label="Returns" :value="returnsPercentage" />
             <DetailRow label="Risk Level" :value="formatRiskLevel(fund.risk)" />
             <DetailRow label="Type" :value="Type" />
             <div class="flex flex-col">
               <h2 class="text-gray-500 mb-1 font-medium">Composition</h2>
-              <p v-for="item in fundComposition" :key="item.key">
+              <p
+                v-if="fundComposition.length === 0"
+                class="font-medium text-gray-800 xl:text-[16px]"
+              >
+                No data available
+              </p>
+              <p v-else v-for="item in fundComposition" :key="item.key">
                 <span class="font-medium"> {{ item.key }}: </span>
                 {{ item.value }}%
               </p>
