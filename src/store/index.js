@@ -31,9 +31,7 @@ export default createStore({
       try {
         commit("setLoading", true);
         commit("setError", null);
-        const res = await axios.get(
-          "https://dashboard.cowrywise.com/api/v2/funds/public/"
-        );
+        const res = await axios.get(`${import.meta.env.VITE_COWRYWISE_API}`);
         const enrichedFunds = res.data.data.map((fund) => fund);
         commit("setFunds", enrichedFunds);
       } catch (err) {

@@ -8,7 +8,7 @@
         <img
           src="https://firebasestorage.googleapis.com/v0/b/cowrywise.appspot.com/o/notifications%2Ficon.png?alt=media"
           alt="logo"
-          class="h-8 w-8 xl:h-12 xl:w-12 object-contain mb-4"
+          class="h-8 w-8 object-contain mb-4"
           loading="lazy"
         />
       </a>
