@@ -64,7 +64,10 @@
                 {{ item.value }}%
               </p>
             </div>
-            <DetailRow label="Custodian" :value="fund.custodian" />
+            <DetailRow
+              label="Custodian"
+              :value="fund.custodian || 'No custodian listed'"
+            />
             <DetailRow
               label="Fund Manager"
               :value="fund.manager || 'Cowry Asset Management'"
