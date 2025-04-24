@@ -26,7 +26,7 @@
       </button>
 
       <div
-        v-if="fund?.id"
+        v-if="fund"
         class="bg-white/70 rounded-3xl shadow-sm p-6 border border-[3px] border-[#0165f6]"
       >
         <div class="flex items-center mb-4 gap-2">
@@ -50,62 +50,41 @@
             class="grid grid-cols-1 gap-4 text-sm xl:text-[16px] text-gray-800"
           >
             <DetailRow
-              v-for="(item, index) in DetailsArray.slice(0, 2)"
+              v-for="(item, index) in detailsArray"
               :key="index"
               :label="item.label"
               :value="item.value"
-            />
-            <!-- <DetailRow label="Risk Level" :value="formatRiskLevel(fund.risk)" /> -->
-
-            <div class="flex flex-col">
-              <h2 class="text-gray-500 mb-1 font-medium">Composition</h2>
-              <p
-                v-if="fundComposition.length === 0"
-                class="font-medium text-gray-800 xl:text-[16px]"
-              >
-                No data available
-              </p>
-              <p v-else v-for="item in fundComposition" :key="item.key">
-                <span class="font-medium"> {{ item.key }}: </span>
-                {{ item.value }}%
-              </p>
-            </div>
-            <DetailRow
-              v-for="(item, index) in DetailsArray.slice(2, 4)"
-              :key="index"
-              :label="item.label"
-              :value="item.value"
-            />
-            <!-- <DetailRow
-              label="Custodian"
-              :value="fund.custodian || 'No custodian listed'"
-            /> -->
-            <!-- <DetailRow
-              label="Fund Manager"
-              :value="fund.manager || 'Cowry Asset Management'"
-            /> -->
-            <div class="flex flex-col">
-              <h2 class="text-gray-500 mb-1 font-medium">
-                Performance (Annual Return)
-              </h2>
-              <h3
-                v-if="fundPerformance.length === 0"
-                class="xl:text-[16px] font-medium"
-              >
-                No performance data available for this fund.
-              </h3>
-              <p v-else v-for="item in fundPerformance" :key="item.fund_id">
-                <span class="font-medium"> {{ item.year }}: </span>
-                {{ item.annualReturn }}
-              </p>
-            </div>
-            <DetailRow
-              v-for="(item, index) in DetailsArray.slice(4)"
-              :key="index"
-              :label="item.label"
-              :value="item.value"
-            />
-            <!-- <DetailRow label="Minimum Investment" :value="'₦1,000'" /> -->
+              :id="item.id"
+            >
+              <template #composition_detail="{ value }">
+                <div class="flex flex-col">
+                  <p
+                    v-if="value.length === 0"
+                    class="font-medium text-gray-800 xl:text-[16px]"
+                  >
+                    No data available
+                  </p>
+                  <p v-else v-for="item in value" :key="item.key">
+                    <span class="font-medium"> {{ item.key }}: </span>
+                    {{ item.value }}%
+                  </p>
+                </div>
+              </template>
+              <template #performance_detail="{ value }">
+                <div class="flex flex-col">
+                  <h3
+                    v-if="value.length === 0"
+                    class="xl:text-[16px] font-medium"
+                  >
+                    No performance data available for this fund.
+                  </h3>
+                  <p v-else v-for="item in value" :key="item.fund_id">
+                    <span class="font-medium"> {{ item.year }}: </span>
+                    {{ item.annualReturn }}
+                  </p>
+                </div>
+              </template>
+            </DetailRow>
           </div>
           <div>
             <img
@@ -149,10 +128,9 @@ onMounted(() => {
   }
 });
 
-const fund = computed(
-  () => store.getters.filteredFunds.find((f) => f.id == route.params.id) || {}
+const fund = computed(() =>
+  store.getters.filteredFunds.find((f) => f.id == route.params.id)
 );
-// const isFundReady = computed(() => fund.value.id); // Take this off
 
 const returnsPercentage = computed(() => formatPercentage(fund.value.returns));
 const fundComposition = computed(() => {
@@ -165,15 +143,6 @@ const fundComposition = computed(() => {
     value,
   }));
 });
-// const type = computed(() => {
-//   if (fund.value.is_eurobond) {
-//     return "Eurobond";
-//   } else if (fund.value.is_money_market) {
-//     return "Money Market";
-//   } else {
-//     return "Mixed";
-//   }
-// });
 
 const fundPerformance = computed(() => {
   return fund.value.performance?.map((item) => ({
@@ -182,7 +151,7 @@ const fundPerformance = computed(() => {
   }));
 });
 
-const DetailsArray = computed(() => {
+const detailsArray = computed(() => {
   const baseDetails = [
     {
       label: "Returns",
@@ -193,12 +162,22 @@ const DetailsArray = computed(() => {
       value: formatRiskLevel(fund.value.risk),
     },
     {
+      label: "Composition",
+      value: fundComposition.value,
+      id: "composition",
+    },
+    {
       label: "Custodian",
       value: fund.value.custodian || "No custodian listed",
     },
     {
       label: "Fund Manager",
       value: fund.value.manager || "Cowry Asset Management",
+    },
+    {
+      label: "Performance",
+      value: fundPerformance.value,
+      id: "performance",
     },
     {
       label: "Minimum Investment",
