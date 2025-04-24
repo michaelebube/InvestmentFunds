@@ -2,7 +2,7 @@
   <div>
     <div class="text-gray-500 font-medium xl:text-[16px]">{{ label }}</div>
     <div
-      v-if="!slot[id + '_detail']"
+      v-if="!slot[`${id}_detail`]"
       class="font-medium text-gray-800 xl:text-[16px]"
     >
       {{ value }}
