@@ -26,7 +26,7 @@
       </button>
 
       <div
-        v-if="isFundReady"
+        v-if="fund?.id"
         class="bg-white/70 rounded-3xl shadow-sm p-6 border border-[3px] border-[#0165f6]"
       >
         <div class="flex items-center mb-4 gap-2">
@@ -49,15 +49,14 @@
           <div
             class="grid grid-cols-1 gap-4 text-sm xl:text-[16px] text-gray-800"
           >
-            <!-- <div
-              class="text-sm xl:text-[16px] flex flex-col text-gray-800 font-medium"
-            >
-              <span class="font-medium text-gray-500">Returns</span>
-              {{ returnsPercentage }}
-            </div> -->
-            <DetailRow label="Returns" :value="returnsPercentage" />
-            <DetailRow label="Risk Level" :value="formatRiskLevel(fund.risk)" />
-            <DetailRow label="Type" :value="Type" />
+            <DetailRow
+              v-for="(item, index) in DetailsArray.slice(0, 2)"
+              :key="index"
+              :label="item.label"
+              :value="item.value"
+            />
+            <!-- <DetailRow label="Risk Level" :value="formatRiskLevel(fund.risk)" /> -->
+
             <div class="flex flex-col">
               <h2 class="text-gray-500 mb-1 font-medium">Composition</h2>
               <p
@@ -72,13 +71,19 @@
               </p>
             </div>
             <DetailRow
+              v-for="(item, index) in DetailsArray.slice(2, 4)"
+              :key="index"
+              :label="item.label"
+              :value="item.value"
+            />
+            <!-- <DetailRow
               label="Custodian"
               :value="fund.custodian || 'No custodian listed'"
-            />
-            <DetailRow
+            /> -->
+            <!-- <DetailRow
               label="Fund Manager"
               :value="fund.manager || 'Cowry Asset Management'"
-            />
+            /> -->
             <div class="flex flex-col">
               <h2 class="text-gray-500 mb-1 font-medium">
                 Performance (Annual Return)
@@ -94,7 +99,13 @@
                 {{ item.annualReturn }}
               </p>
             </div>
-            <DetailRow label="Minimum Investment" :value="'₦1,000'" />
+            <DetailRow
+              v-for="(item, index) in DetailsArray.slice(4)"
+              :key="index"
+              :label="item.label"
+              :value="item.value"
+            />
+            <!-- <DetailRow label="Minimum Investment" :value="'₦1,000'" /> -->
           </div>
           <div>
             <img
@@ -141,7 +152,7 @@ onMounted(() => {
 const fund = computed(
   () => store.getters.filteredFunds.find((f) => f.id == route.params.id) || {}
 );
-const isFundReady = computed(() => !!fund.value.id);
+// const isFundReady = computed(() => fund.value.id); // Take this off
 
 const returnsPercentage = computed(() => formatPercentage(fund.value.returns));
 const fundComposition = computed(() => {
@@ -154,20 +165,47 @@ const fundComposition = computed(() => {
     value,
   }));
 });
-const Type = computed(() => {
-  if (fund.value.is_eurobond) {
-    return "Eurobond";
-  } else if (fund.value.is_money_market) {
-    return "Money Market";
-  } else {
-    return "Mixed";
-  }
-});
+// const type = computed(() => {
+//   if (fund.value.is_eurobond) {
+//     return "Eurobond";
+//   } else if (fund.value.is_money_market) {
+//     return "Money Market";
+//   } else {
+//     return "Mixed";
+//   }
+// });
+
 const fundPerformance = computed(() => {
   return fund.value.performance?.map((item) => ({
     year: item.year,
     annualReturn: formatPercentage(item.annual_return),
   }));
+});
+
+const DetailsArray = computed(() => {
+  const baseDetails = [
+    {
+      label: "Returns",
+      value: returnsPercentage.value,
+    },
+    {
+      label: "Risk Level",
+      value: formatRiskLevel(fund.value.risk),
+    },
+    {
+      label: "Custodian",
+      value: fund.value.custodian || "No custodian listed",
+    },
+    {
+      label: "Fund Manager",
+      value: fund.value.manager || "Cowry Asset Management",
+    },
+    {
+      label: "Minimum Investment",
+      value: "₦1,000",
+    },
+  ];
+  return [...baseDetails];
 });
 
 const goBack = () => {

@@ -8,10 +8,10 @@ export function formatPercentage(returns) {
 export function formatRiskLevel(risk) {
   const riskLevel = Number(risk);
   if (riskLevel === 3) {
-    return "Aggressive(High Risk)";
+    return "Aggressive";
   } else if (riskLevel === 2) {
-    return "Moderate(Medium Risk)";
+    return "Moderate";
   } else {
-    return "Conservative(Low Risk)";
+    return "Conservative";
   }
 }
