@@ -2,7 +2,7 @@
   <div class="bg-white/60 min-h-screen">
     <div class="font-dmsans" ref="scrollTarget">
       <div
-        class="flex bg-white sticky shadow-lg items-center w-full h-[100px] z-10"
+        class="flex bg-white fixed shadow-lg items-center w-full h-[100px] z-10"
       >
         <a
           href="https://cowrywise.com"
@@ -45,10 +45,6 @@
         </a>
       </div>
 
-      <div>
-        <InvestmentsTab />
-      </div>
-
       <!-- <div class="relative inline-block group" v-if="!error && !isLoading">
       <select
         v-model="selectedRisk"
@@ -72,6 +68,10 @@
           class="animate-spin rounded-full h-10 w-10 border-b-2 border-blue-500 mx-auto"
         ></div>
         <p class="mt-2 text-gray-500">Loading funds...</p>
+      </div>
+
+      <div class="pt-[90px]">
+        <InvestmentsTab />
       </div>
 
       <!-- <div class="grid grid-cols-1 md:grid-cols-2 gap-4 xl:gap-8">

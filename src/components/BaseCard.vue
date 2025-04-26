@@ -3,14 +3,14 @@
     class="border-gray-300 rounded-3xl py-8 bg-white shadow-lg transition duration-300 ease-in-out border"
   >
     <div class="px-8 flex flex-col">
-      <div class="flex items-center gap-7 mb-10 min-h-[80px]">
+      <div class="flex items-center gap-7 mb-10 min-h-[100px]">
         <img
           :src="fund.logo"
           alt="logo"
           class="h-15 w-15 object-contain"
           loading="lazy"
         />
-        <h2 class="text-xl font-semibold">
+        <h2 class="text-2xl xl:text-2xl font-semibold">
           {{ fund.name }}
         </h2>
       </div>
