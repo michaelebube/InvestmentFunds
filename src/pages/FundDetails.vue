@@ -27,7 +27,7 @@
 
       <div
         v-if="fund"
-        class="bg-white/70 rounded-3xl shadow-sm p-6 border border-[3px] border-[#0165f6]"
+        class="bg-white/70 rounded-3xl shadow-sm p-6 border-[3px] border-[#0165f6]"
       >
         <div class="flex items-center mb-4 gap-2">
           <img

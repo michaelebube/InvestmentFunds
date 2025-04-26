@@ -54,7 +54,9 @@ export default createStore({
   getters: {
     filteredFunds: (state) => {
       if (!state.filterRisk) return state.funds;
-      return state.funds.filter((fund) => fund.risk == state.filterRisk);
+      return state.funds.filter(
+        (fund) => fund.risk == state.filterRisk && fund.performance.length !== 0
+      );
     },
     fundDetails: (state) => state.selectedFund,
     isLoading: (state) => state.isLoading,
