@@ -8,7 +8,7 @@
           href="https://cowrywise.com"
           target="_blank"
           rel="noopener noreferrer"
-          class="mx-[20px] md:mx-[30px] xl:mx-[100px] 2xl:mx-[180px]"
+          class="mx-[20px] md:mx-[30px] xl:mx-[90px] 2xl:mx-[160px]"
         >
           <!-- <img
           src="https://firebasestorage.googleapis.com/v0/b/cowrywise.appspot.com/o/notifications%2Ficon.png?alt=media"

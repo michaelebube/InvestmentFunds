@@ -1,5 +1,5 @@
 <template>
-  <div class="mt-[50px] mx-[20px] md:mx-[30px] xl:mx-[100px] 2xl:mx-[180px]">
+  <div class="mt-[50px] mx-[20px] md:mx-[30px] xl:mx-[90px] 2xl:mx-[160px]">
     <div class="hidden sm:flex gap-6 text-lg font-medium mb-6">
       <button
         v-for="tab in tabs"
@@ -16,11 +16,11 @@
       </button>
     </div>
 
-    <div class="relative inline-block w-35 sm:hidden">
+    <div class="relative inline-block w-32 sm:hidden mb-2">
       <select
         v-model="selected"
         @change="handleTabClick(selected)"
-        class="appearance-none px-6 py-2 text-blue-600 bg-gray-100 border border-transparent font-semibold text-sm rounded-full pr-12"
+        class="appearance-none px-4 py-2 text-blue-600 bg-gray-100 border border-transparent font-semibold text-[12px] rounded-full pr-12"
       >
         <option v-for="tab in tabs" :key="tab" :value="tab">
           {{ tab }}
