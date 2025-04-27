@@ -1,10 +1,26 @@
 <template>
-  <div
+  <div class="bg-[#ffffffee] min-h-screen">
+    <div v-if="isLoading" class="text-center text-gray-500 py-10 pt-[130px]">
+      Loading fund details...
+    </div>
+    <div v-else-if="fund">
+      <DetailRow
+        :fund="fund"
+        :returnsPercentage="formatPercentage(fund.returns)"
+      />
+    </div>
+
+    <div v-else class="pt-[130px]">
+      <ErrorComp :error="error" />
+    </div>
+  </div>
+
+  <!-- <div
     class="min-h-screen bg-gray-300 py-10 px-8 flex items-center justify-center"
   >
-    <div class="max-w-4xl xl:max-w-5xl mx-auto flex flex-col justify-center">
-      <!-- Back Button -->
-      <button
+    <div class="max-w-4xl xl:max-w-5xl mx-auto flex flex-col justify-center"> -->
+  <!-- Back Button -->
+  <!-- <button
         @click="goBack"
         class="mb-4 flex items-center text-[18px] text-blue-600 hover:text-blue-800 text-sm font-medium cursor-pointer group"
       >
@@ -95,21 +111,15 @@
           </div>
         </div>
       </div>
-      <div
-        v-else-if="!fetchFunds && !error"
-        class="text-center text-gray-500 py-10"
-      >
-        Loading fund details...
-      </div>
-      <ErrorComp :error="error" />
+     
     </div>
-  </div>
+  </div> -->
 </template>
 
 <script setup>
 import { useRoute, useRouter } from "vue-router";
 import { useStore } from "vuex";
-import { computed, onMounted } from "vue";
+import { computed, onMounted, watch } from "vue";
 import DetailRow from "../components/DetailsCard.vue";
 import { formatPercentage } from "../utils/fundUtils.js";
 import logo from "../assets/logo.png";
@@ -144,50 +154,11 @@ const fundComposition = computed(() => {
   }));
 });
 
-const fundPerformance = computed(() => {
-  return fund.value.performance?.map((item) => ({
-    year: item.year,
-    annualReturn: formatPercentage(item.annual_return),
-  }));
+const isLoading = computed(() => {
+  return store.state.isLoading;
 });
 
-const detailsArray = computed(() => {
-  const baseDetails = [
-    {
-      label: "Returns",
-      value: returnsPercentage.value,
-    },
-    {
-      label: "Risk Level",
-      value: formatRiskLevel(fund.value.risk),
-    },
-    {
-      label: "Composition",
-      value: fundComposition.value,
-      id: "composition",
-    },
-    {
-      label: "Custodian",
-      value: fund.value.custodian || "No custodian listed",
-    },
-    {
-      label: "Fund Manager",
-      value: fund.value.manager || "Cowry Asset Management",
-    },
-    {
-      label: "Performance",
-      value: fundPerformance.value,
-      id: "performance",
-    },
-    {
-      label: "Minimum Investment",
-      value: "₦1,000",
-    },
-  ];
-  return [...baseDetails];
+watch(isLoading, (newVal) => {
+  console.log("Loading state changed:", newVal);
 });
-
-const goBack = () => {
-  router.back();
-};
 </script>

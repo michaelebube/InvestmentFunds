@@ -1,5 +1,7 @@
 <template>
-  <div class="mt-[50px] mx-[20px] md:mx-[30px] xl:mx-[90px] 2xl:mx-[160px]">
+  <div
+    class="mt-[50px] mx-[20px] sm:mx-[40px] md:mx-[30px] xl:mx-[90px] 2xl:mx-[200px]"
+  >
     <div class="hidden sm:flex gap-6 text-lg font-medium mb-6">
       <button
         v-for="tab in tabs"
@@ -41,7 +43,7 @@
         :fund="fund"
         :returnsPercentage="formatPercentage(fund.returns)"
         :riskLevel="formatRiskLevel(fund.risk)"
-        @click="goToDetails(fund)"
+        @goToDetails="goToDetails"
         :fundPerformance="fundPerformance"
       />
     </div>
@@ -55,14 +57,16 @@ import { useStore } from "vuex";
 import BaseCard from "./BaseCard.vue";
 import { formatPercentage, formatRiskLevel } from "../utils/fundUtils";
 import { onMounted } from "vue";
+import { useRouter } from "vue-router";
 
 onMounted(() => {
   store.dispatch("filterByRisk", riskMap[selected.value]);
 });
 
 const store = useStore();
+const router = useRouter();
 
-const selected = ref("Conservative");
+const selected = ref(localStorage.getItem("selectedTab") || "Conservative");
 const tabs = ["Conservative", "Moderate", "Growth"];
 
 const riskMap = {
@@ -76,6 +80,7 @@ const handleTabClick = (tab) => {
 };
 
 watch(selected, (newVal) => {
+  localStorage.setItem("selectedTab", newVal);
   const riskValue = riskMap[newVal];
   store.dispatch("filterByRisk", riskValue);
 });
@@ -84,6 +89,6 @@ const funds = computed(() => store.getters.filteredFunds);
 
 const goToDetails = (fund) => {
   store.dispatch("setSelectedFund", fund);
-  router.push({ name: "FundDetails", params: { id: fund.id } });
+  router.push({ name: "FundDetail", params: { id: fund.id } });
 };
 </script>

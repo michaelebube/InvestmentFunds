@@ -76,16 +76,15 @@
           Invest Now
         </button>
         <a
-          href="#"
+          @click="$emit('goToDetails', fund)"
           class="text-[#0066f5] font-medium flex items-center gap-1 cursor-pointer transition duration-300 ease-in-out group"
         >
           Learn More
-          <span
-            ><img
-              src="../assets/svg/right-arrow.svg"
-              alt="right-arrow"
-              class="w-3 h-3 transform transition-transform duration-300 ease-in-out group-hover:translate-x-[4px]"
-          /></span>
+          <span>
+            <RightArrow
+              class="text-blue-600 group-hover:translate-x-1 transform transform-translate duration-300 ease-in-out"
+            />
+          </span>
         </a>
       </div>
     </div>
@@ -144,6 +143,9 @@
 const props = defineProps(["fund", "returnsPercentage", "riskLevel"]);
 import { computed } from "vue";
 import { formatPercentage } from "../utils/fundUtils";
+import RightArrow from "./RightArrow.vue";
+
+defineEmits(["goToDetails"]);
 
 const fundPerformance = computed(() => {
   return props.fund.is_money_market
