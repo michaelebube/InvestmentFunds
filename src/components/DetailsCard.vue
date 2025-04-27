@@ -1,14 +1,4 @@
 <template>
-  <!-- <div>
-    <div class="text-gray-500 font-medium xl:text-[16px]">{{ label }}</div>
-    <div
-      v-if="!slot[`${id}_detail`]"
-      class="font-medium text-gray-800 xl:text-[16px]"
-    >
-      {{ value }}
-    </div>
-    <slot :name="id + '_detail'" :value="value" v-else> </slot>
-  </div> -->
   <div
     class="pt-[120px] sm:pt-[150px] mx-[20px] sm:mx-[40px] md:mx-[30px] xl:mx-[90px] 2xl:mx-[200px]"
   >
@@ -31,7 +21,7 @@
             <img
               :src="fund.logo"
               alt="logo"
-              class="h-16 w-16 object-contain border-white border-1"
+              class="h-16 w-16 object-contain rounded-full border-[#fff] border-3"
               loading="lazy"
             />
             <div>
@@ -156,22 +146,25 @@
         </div>
       </div>
     </div>
+    <div class="mt-20">
+      <h2 class="text-3xl font-medium text-[#082552]">Explore more funds</h2>
+    </div>
   </div>
 </template>
 
 <script setup>
-import { useSlots, computed } from "vue";
+import { computed } from "vue";
 import RightArrow from "./RightArrow.vue";
 import { useRouter } from "vue-router";
-// defineProps(["label", "value", "id"]);
-const props = defineProps(["fund", "returnsPercentage"]);
-const router = useRouter();
 import {
   formatPercentage,
   formatReturnsPayment,
   formatRiskLevel,
   formatNaira,
 } from "../utils/fundUtils";
+
+const props = defineProps(["fund", "returnsPercentage"]);
+const router = useRouter();
 
 const fundPerformance = computed(() => {
   return props.fund.is_money_market
@@ -215,7 +208,6 @@ const fundComposition = computed(() => {
 });
 
 const goBack = () => {
-  router.back();
+  router.push("/");
 };
-const slot = useSlots();
 </script>

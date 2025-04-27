@@ -2,7 +2,7 @@
   <div
     class="mt-[50px] mx-[20px] sm:mx-[40px] md:mx-[30px] xl:mx-[90px] 2xl:mx-[200px]"
   >
-    <div class="hidden sm:flex gap-6 text-lg font-medium mb-6">
+    <div class="hidden sm:flex gap-3 text-[17px] font-medium mb-6">
       <button
         v-for="tab in tabs"
         :key="tab"
@@ -59,6 +59,13 @@ import { formatPercentage, formatRiskLevel } from "../utils/fundUtils";
 import { onMounted } from "vue";
 import { useRouter } from "vue-router";
 
+const props = defineProps({
+  excludeFundId: {
+    type: [String],
+    default: null,
+  },
+});
+
 onMounted(() => {
   store.dispatch("filterByRisk", riskMap[selected.value]);
 });
@@ -85,10 +92,17 @@ watch(selected, (newVal) => {
   store.dispatch("filterByRisk", riskValue);
 });
 
-const funds = computed(() => store.getters.filteredFunds);
+const funds = computed(() => {
+  const allFunds = store.getters.filteredFunds;
+  if (props.excludeFundId) {
+    return allFunds.filter((fund) => fund.id != props.excludeFundId);
+  }
+
+  return allFunds;
+});
 
 const goToDetails = (fund) => {
-  store.dispatch("setSelectedFund", fund);
+  // store.dispatch("setSelectedFund", fund);
   router.push({ name: "FundDetail", params: { id: fund.id } });
 };
 </script>
