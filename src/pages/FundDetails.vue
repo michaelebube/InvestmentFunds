@@ -5,6 +5,7 @@
     </div>
     <div v-else-if="fund">
       <DetailRow
+        :key="$route.params.id"
         :fund="fund"
         :returnsPercentage="formatPercentage(fund.returns)"
       />
@@ -22,7 +23,7 @@
 <script setup>
 import { useRoute } from "vue-router";
 import { useStore } from "vuex";
-import { computed, onMounted, watch } from "vue";
+import { computed, onMounted, watch, nextTick } from "vue";
 import DetailRow from "../components/DetailsCard.vue";
 import { formatPercentage } from "../utils/fundUtils.js";
 
@@ -43,7 +44,8 @@ onMounted(() => {
 
 watch(
   () => route.params.id,
-  () => {
+  async () => {
+    await nextTick();
     window.scrollTo({ top: 0, behavior: "smooth" });
   }
 );

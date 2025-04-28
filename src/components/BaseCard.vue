@@ -59,7 +59,7 @@
       </div>
       <div class="px-1 mt-6 mb-3 flex justify-between items-center">
         <button
-          class="bg-[#0066f5] text-white px-8 py-3 lg:px-4 lg:py-3 xl:px-8 xl:py-3 font-semibold rounded-md shadow-md cursor-pointer transition duration-300 ease-in-out"
+          class="bg-[#0066f5] text-white px-4 py-2 sm:px-8 sm:py-3 lg:px-4 lg:py-3 xl:px-8 xl:py-3 font-semibold rounded-md shadow-md cursor-pointer transition duration-300 ease-in-out"
         >
           Invest Now
         </button>
