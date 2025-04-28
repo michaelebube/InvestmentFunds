@@ -26,25 +26,13 @@
         </div>
         <div class="flex gap-3 mt-1">
           <a href="#">
-            <img
-              src="../assets/svg/twitter.svg"
-              alt="Twitter Logo"
-              class="w-4 h-4"
-            />
+            <img src="/svg/twitter.svg" alt="Twitter Logo" class="w-4 h-4" />
           </a>
           <a href="#">
-            <img
-              src="../assets/svg/facebook.svg"
-              alt="Facebook Logo"
-              class="w-4 h-4"
-            />
+            <img src="/svg/facebook.svg" alt="Facebook Logo" class="w-4 h-4" />
           </a>
           <a href="#">
-            <img
-              src="../assets/svg/whatsapp.svg"
-              alt="WhatsApp Logo"
-              class="w-4 h-4"
-            />
+            <img src="/svg/whatsapp.svg" alt="WhatsApp Logo" class="w-4 h-4" />
           </a>
         </div>
       </div>

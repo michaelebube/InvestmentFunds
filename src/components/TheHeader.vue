@@ -8,7 +8,7 @@
       rel="noopener noreferrer"
       class="mx-[20px] sm:mx-[40px] md:mx-[30px] xl:mx-[90px] 2xl:mx-[200px]"
     >
-      <img src="../assets/svg/cowrywise.svg" alt="Cowrywise Logo" />
+      <img src="/svg/cowrywise.svg" alt="Cowrywise Logo" />
     </a>
   </div>
 </template>
