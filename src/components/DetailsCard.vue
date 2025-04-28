@@ -5,7 +5,7 @@
     <div class="flex gap-2 sm:gap-4 items-center">
       <a
         @click="goBack"
-        class="text-gray-400 text-[12px] sm:text-sm cursor-pointer"
+        class="text-gray-400 text-[13px] sm:text-sm cursor-pointer"
         >Mutual Funds</a
       >
       <RightArrow />
