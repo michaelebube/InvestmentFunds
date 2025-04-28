@@ -1,5 +1,7 @@
 <template>
-  <div class="flex bg-white fixed shadow-lg items-center w-full h-[100px] z-10">
+  <div
+    class="flex bg-white fixed shadow-md items-center w-full h-[70px] sm:h-[75px] lg:h-[90px] z-10"
+  >
     <a
       href="https://cowrywise.com"
       target="_blank"

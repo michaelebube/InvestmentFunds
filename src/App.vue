@@ -9,8 +9,4 @@ import TheHeader from "./components/TheHeader.vue";
   <RouterView />
 </template>
 
-<style>
-* {
-  font-family: "IBM Plex Sans", sans-serif;
-}
-</style>
+<style></style>

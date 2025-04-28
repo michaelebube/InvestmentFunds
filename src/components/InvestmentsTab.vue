@@ -1,8 +1,8 @@
 <template>
   <div
-    class="mt-[50px] mx-[20px] sm:mx-[40px] md:mx-[30px] xl:mx-[90px] 2xl:mx-[200px]"
+    class="mt-[20px] sm:mt-[40px] mx-[20px] sm:mx-[40px] md:mx-[30px] xl:mx-[90px] 2xl:mx-[200px]"
   >
-    <div class="hidden sm:flex gap-3 text-[17px] font-medium mb-6">
+    <div class="hidden sm:flex gap-3 text-sm lg:text-[17px] font-normal mb-6">
       <button
         v-for="tab in tabs"
         :key="tab"
@@ -10,7 +10,7 @@
         :class="[
           'px-2 py-2 hover:cursor-pointer',
           selected === tab
-            ? 'text-blue-600 bg-gray-50  border border-transparent rounded-full '
+            ? 'text-blue-600 bg-gray-50  border border-transparent font-semibold rounded-full '
             : 'text-gray-500',
         ]"
       >
@@ -36,7 +36,9 @@
       </div>
     </div>
 
-    <div class="mt-5 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div
+      class="mt-5 md:mt-7 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-15"
+    >
       <BaseCard
         v-for="fund in funds"
         :key="fund.id"
@@ -44,7 +46,6 @@
         :returnsPercentage="formatPercentage(fund.returns)"
         :riskLevel="formatRiskLevel(fund.risk)"
         @goToDetails="goToDetails"
-        :fundPerformance="fundPerformance"
       />
     </div>
   </div>

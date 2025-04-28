@@ -6,4 +6,79 @@
     padding: 0;
     box-sizing: border-box;
   }
+  @font-face {
+    font-family: "Rency";
+    src: url("./assets/fonts/Rency/Rency-Light.woff2") format("woff2");
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: "Rency";
+    src: url("./assets/fonts/Rency/Rency-LightItalic.woff2") format("woff2");
+    font-weight: 300;
+    font-style: italic;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: "Rency";
+    src: url("./assets/fonts/Rency/Rency-Regular.woff2") format("woff2");
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: "Rency";
+    src: url("./assets/fonts/Rency/Rency-RegularItalic.woff2") format("woff2");
+
+    font-weight: 400;
+    font-style: italic;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: "Rency";
+    src: url("./assets/fonts/Rency/Rency-Medium.woff2") format("woff2");
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: "Rency";
+    src: url("./assets/fonts/Rency/Rency-MediumItalic.woff2") format("woff2");
+    font-weight: 500;
+    font-style: italic;
+    font-display: swap;
+  }
+
+  @font-face {
+    font-family: "Rency";
+    src: url("./assets/fonts/Rency/Rency-SemiBold.woff2") format("woff2");
+    font-weight: 600;
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: "Rency";
+    src: url("./assets/fonts/Rency/Rency-SemiBoldItalic.woff2") format("woff2");
+    font-weight: 600;
+    font-style: italic;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: "Rency";
+    src: url("./assets/fonts/Rency/Rency-Bold.woff2") format("woff2");
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+  }
+  @font-face {
+    font-family: "Rency";
+    src: url("./assets/fonts/Rency/Rency-BoldItalic.woff2") format("woff2");
+    font-weight: 700;
+    font-style: italic;
+    font-display: swap;
+  }
+  html {
+    font-family: "Rency", ui-sans-serif, system-ui;
+  }
 }

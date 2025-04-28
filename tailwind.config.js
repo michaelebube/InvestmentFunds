@@ -4,8 +4,7 @@ export default {
   theme: {
     extend: {
       fontFamily: {
-        sans: ["IBM Plex Sans", "sans-serif"],
-        lora: ["Lora", "serif"],
+        sans: ["Rency", "ui-sans-serif", "system-ui"],
       },
       boxShadow: {
         "custom-blue":

@@ -1,26 +1,26 @@
 <template>
   <div
-    class="border-gray-200 rounded-3xl py-8 bg-white shadow-md transition duration-300 ease-in-out border"
+    class="border-gray-200 rounded-3xl py-4 sm:py-3 bg-white shadow-sm transition duration-300 ease-in-out border"
   >
-    <div class="px-8 flex flex-col">
+    <div class="px-5 sm:px-5 flex flex-col">
       <div class="flex items-center gap-7 mb-10 min-h-[100px]">
         <img
           :src="fund.logo"
           alt="logo"
-          class="h-15 w-15 object-contain"
+          class="h-13 w-13 sm:h-15 sm:w-15 object-contain"
           loading="lazy"
         />
-        <h2 class="text-2xl font-semibold">
+        <h2 class="text-xl text-[#082552] sm:text-xl font-semibold">
           {{ fund.name }}
         </h2>
       </div>
 
       <div class="px-1 flex justify-between">
         <div>
-          <div class="text-md text-gray-400">
+          <div class="text-sm text-gray-400 font-light">
             {{ fund.is_money_market ? "Annual Returns" : "YTD Returns " }}
           </div>
-          <p class="text-3xl font-semibold text-[#58CC58] !mt-1">
+          <p class="text-[26px] sm:text-3xl font-medium text-[#58CC58] !mt-1">
             {{ returnsPercentage }} <span class="text-lg">%</span>
           </p>
         </div>
@@ -49,7 +49,7 @@
         </div>
       </div>
       <div class="mt-4 px-1">
-        <p class="text-gray-400 text-sm mb-4">
+        <p class="text-gray-400 font-light text-sm mb-4">
           {{
             fund.is_money_market
               ? "Historical performance of annual returns"
@@ -63,21 +63,21 @@
         class="px-1 mb-3 border-b py-3 text-sm border-gray-200"
       >
         <div class="flex justify-between">
-          <p class="text-[#082552] opacity-60">{{ item.year }}</p>
-          <p class="text-[#58CC58] font-bold">
+          <p class="text-[#082552] font-normal opacity-60">{{ item.year }}</p>
+          <p class="text-[#58CC58] font-semibold">
             {{ item.annualReturn }}<span class="text-sm">%</span>
           </p>
         </div>
       </div>
-      <div class="px-1 mt-6 flex justify-between items-center">
+      <div class="px-1 mt-6 mb-3 flex justify-between items-center">
         <button
-          class="bg-[#0066f5] text-white px-8 py-3 lg:px-4 lg:py-3 xl:px-8 xl:py-3 rounded-md shadow-md cursor-pointer transition duration-300 ease-in-out"
+          class="bg-[#0066f5] text-white px-8 py-3 lg:px-4 lg:py-3 xl:px-8 xl:py-3 font-semibold rounded-md shadow-md cursor-pointer transition duration-300 ease-in-out"
         >
           Invest Now
         </button>
         <a
           @click="$emit('goToDetails', fund)"
-          class="text-[#0066f5] font-medium flex items-center gap-1 cursor-pointer transition duration-300 ease-in-out group"
+          class="text-[#0066f5] font-semibold flex items-center gap-1 cursor-pointer transition duration-300 ease-in-out group"
         >
           Learn More
           <span>
