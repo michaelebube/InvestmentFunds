@@ -16,17 +16,17 @@
       class="mt-10 sm:mt-15 grid grid-cols-1 space-y-6 sm:space-y-10 md:space-y-0 md:grid-cols-[67%_33%] sm:gap-x-[65px] md:gap-x-[75px] lg:gap-x-[90px] xl:gap-x-[100px] 2xl:gap-x-[120px]"
     >
       <div>
-        <div class="sm:flex justify-between items-start">
-          <div class="lg:flex items-center mb-4 gap-8">
+        <div class="sm:flex justify-between sm:items-end md:items-start">
+          <div class="sm:flex mb-4 gap-6 xl:gap-8">
             <img
               :src="fund.logo"
               alt="logo"
-              class="h-16 w-16 object-contain rounded-full border-[#fff] border-3"
+              class="h-16 w-16 sm:h-18 sm:w-18 md:h-16 md:w-16 xl:h-20 xl:w-20 object-contain rounded-full border-[#fff] border-3 mb-4 sm:mb-0"
               loading="lazy"
             />
             <div>
               <h2
-                class="mb-2 sm:mb-4 md:mb-0 text-2xl xl:text-[28px] font-semibold"
+                class="mb-2 sm:mb-4 md:mb-0 text-2xl md:text-xl lg:text-2xl xl:text-[28px] font-semibold"
               >
                 {{ fund.name }}
               </h2>
@@ -36,17 +36,19 @@
             </div>
           </div>
           <button
-            class="bg-[#0066f5] text-white text-lg py-2 px-4 lg:py-3 lg:px-8 font-medium rounded-md shadow-lg shadow-custom-blue cursor-pointer hover:shadow-xl transition duration-300 ease-in-out"
+            class="bg-[#0066f5] text-white md:text-sm lg:text-lg text-lg py-2 px-6 md:py-[7px] md:px-4 lg:py-2 lg:px-4 xl:py-3 xl:px-8 font-medium rounded-md shadow-lg shadow-custom-blue cursor-pointer hover:shadow-xl transition duration-300 ease-in-out"
           >
             Invest Now
           </button>
         </div>
-        <div class="mt-10 px-1 flex justify-between">
+        <div class="mt-10 sm:mt-12 md:mt-10 px-1 flex justify-between">
           <div>
-            <div class="text-[16px] text-gray-400">
+            <div class="text-sm sm:text-[16px] text-gray-400">
               {{ fund.is_money_market ? "Annual Returns" : "YTD Returns " }}
             </div>
-            <p class="text-3xl font-semibold text-[#58CC58] !mt-1">
+            <p
+              class="text-[26px] sm:text-3xl font-semibold text-[#58CC58] mt-1"
+            >
               {{ returnsPercentage }} <span class="text-lg">%</span>
             </p>
           </div>
@@ -99,24 +101,26 @@
       <div
         class="flex flex-col gap-3 md:max-w-[180px] lg:max-w-[240px] xl:max-w-[300px] 2xl:max-w-[330px]"
       >
-        <h2 class="lg:-my-2 text-xl font-medium">About</h2>
+        <h2 class="lg:-my-2 text-lg sm:text-xl font-medium text-[#082552]">
+          About
+        </h2>
         <p
-          class="text-gray-400 break-words md:text-sm lg:text-[16px] text-[16px] mb-[2px]"
+          class="text-[#082552] opacity-65 break-words text-sm font-light md:text-sm lg:text-[16px] sm:text-[16px] mb-[2px]"
         >
           {{ fund.description }}
         </p>
         <div v-for="(item, index) in detailsArray" :key="index">
           <div
-            class="flex justify-between border-b border-gray-200 py-3 text-[16px]"
+            class="flex justify-between items-center border-b-[0.5px] border-gray-200 py-4 text-sm lg:text-[16px]"
           >
-            <p class="text-[#030e1d] opacity-40">{{ item.label }}</p>
-            <p class="font-normal opacity-80">
+            <p class="text-[#082552] opacity-60">{{ item.label }}</p>
+            <p class="font-normal text-[#082552]">
               {{ item.value }}
             </p>
           </div>
         </div>
         <div class="mt-5 mb-6 sm:mt-8">
-          <p class="text-[#030e1d] opacity-40 mb-5">Fund Composition</p>
+          <p class="text-[#082552] opacity-60 mb-5">Fund Composition</p>
           <div
             class="flex items-center h-2 rounded-[2px] overflow-hidden bg-gray-100"
           >

@@ -13,7 +13,7 @@
     <div v-else class="pt-[150px]">
       <ErrorComp :error="error" />
     </div>
-    <div v-if="fund" class="mb-15">
+    <div v-if="fund" class="mt-15 sm:mt-0 mb-15">
       <InvestmentsTab :excludeFundId="fund?.id" />
     </div>
   </div>
