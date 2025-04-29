@@ -132,7 +132,7 @@
             <div
               v-for="(item, index) in fundComposition"
               :key="index"
-              class="flex items-center gap-2"
+              class="flex items-baseline gap-2"
             >
               <div
                 :style="{ backgroundColor: item.color }"
