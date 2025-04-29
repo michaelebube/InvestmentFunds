@@ -4,7 +4,7 @@ import FundDetail from "../pages/FundDetails.vue";
 
 const routes = [
   { path: "/", component: FundList },
-  { path: "/fund/:name", name: "FundDetail", component: FundDetail },
+  { path: "/fund/:id", name: "FundDetail", component: FundDetail },
   { path: "/:pathMatch(.*)*", redirect: "/" },
 ];
 

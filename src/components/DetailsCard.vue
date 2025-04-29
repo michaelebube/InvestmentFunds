@@ -5,11 +5,11 @@
     <div class="flex gap-2 sm:gap-4 items-center">
       <a
         @click="goBack"
-        class="text-gray-400 text-[13px] sm:text-sm cursor-pointer"
+        class="text-[#082552] opacity-65 text-[13px] font-light sm:text-sm cursor-pointer"
         >Mutual Funds</a
       >
       <RightArrow />
-      <span class="text-[12px] sm:text-sm">{{ fund.name }}</span>
+      <span class="text-[12px] text-[#082552] sm:text-sm">{{ fund.name }}</span>
     </div>
 
     <div
@@ -26,7 +26,7 @@
             />
             <div>
               <h2
-                class="mb-2 sm:mb-4 md:mb-0 text-2xl md:text-xl lg:text-2xl xl:text-[28px] font-semibold"
+                class="mb-2 sm:mb-4 md:mb-0 text-2xl md:text-xl lg:text-2xl xl:text-[28px] text-[#082552] font-semibold"
               >
                 {{ fund.name }}
               </h2>
@@ -36,7 +36,7 @@
             </div>
           </div>
           <BaseButton
-            class="md:text-sm lg:text-lg text-lg py-2 px-6 md:py-[7px] md:px-4 lg:py-2 lg:px-4 xl:py-3 xl:px-8"
+            class="md:text-sm lg:text-[16px] text-lg py-2 px-6 md:py-[7px] md:px-4 lg:py-2 xl:py-3 lg:px-4 xl:px-6"
           />
         </div>
         <div class="mt-10 sm:mt-12 md:mt-10 px-1 flex justify-between">
@@ -184,7 +184,10 @@ const truncate = (str, maxLength = 18) => {
 const detailsArray = computed(() => {
   return [
     { label: "Risk Level", value: formatRiskLevel(props.fund.risk) },
-    { label: "Custodian", value: truncate(props.fund.custodian) },
+    {
+      label: "Custodian",
+      value: truncate(props.fund.custodian),
+    },
     { label: "Fund Size", value: formatNaira(props.fund.size_in_kobo) },
     {
       label: "Returns Payment",

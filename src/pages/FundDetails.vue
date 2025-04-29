@@ -53,7 +53,7 @@ watch(
 );
 
 const fund = computed(() =>
-  store.state.funds.find((f) => slugify(f.name) == route.params.name)
+  store.state.funds.find((f) => f.id == route.params.id)
 );
 
 const isLoading = computed(() => {

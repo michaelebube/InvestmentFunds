@@ -58,7 +58,7 @@ import { useStore } from "vuex";
 import BaseCard from "./BaseCard.vue";
 import { formatPercentage, formatRiskLevel, slugify } from "../utils/fundUtils";
 import { onMounted } from "vue";
-import { useRouter } from "vue-router";
+import { useRouter, useRoute } from "vue-router";
 const props = defineProps({
   excludeFundId: {
     type: [String],
@@ -66,15 +66,9 @@ const props = defineProps({
   },
 });
 
-onMounted(() => {
-  store.dispatch("filterByRisk", riskMap[selected.value]);
-});
-
 const store = useStore();
 const router = useRouter();
-
-const selected = ref(localStorage.getItem("selectedTab") || "Conservative");
-const tabs = ["Conservative", "Moderate", "Growth"];
+const route = useRoute();
 
 const riskMap = {
   Conservative: 1,
@@ -82,8 +76,25 @@ const riskMap = {
   Growth: 3,
 };
 
+onMounted(() => {
+  store.dispatch("filterByRisk", riskMap[selected.value]);
+});
+
+const tabs = ["Conservative", "Moderate", "Growth"];
+const defaultTab = "Conservative";
+
+const selected = ref(
+  tabs.includes(route.query.tab) ? route.query.tab : defaultTab
+);
+
 const handleTabClick = (tab) => {
   selected.value = tab;
+  router.replace({
+    query: {
+      ...route.query,
+      tab,
+    },
+  });
 };
 
 watch(selected, (newVal) => {
@@ -91,6 +102,17 @@ watch(selected, (newVal) => {
   const riskValue = riskMap[newVal];
   store.dispatch("filterByRisk", riskValue);
 });
+
+watch(
+  () => route.query.tab,
+  (newTab) => {
+    if (!tabs.includes(newTab)) {
+      router.replace({
+        query: { ...route.query, tab: defaultTab },
+      });
+    }
+  }
+);
 
 const funds = computed(() => {
   const allFunds = store.getters.filteredFunds;
@@ -103,7 +125,6 @@ const funds = computed(() => {
 
 const goToDetails = (fund) => {
   // store.dispatch("setSelectedFund", fund);
-  const slugName = slugify(fund.name);
-  router.push({ name: "FundDetail", params: { name: slugName } });
+  router.push({ name: "FundDetail", params: { id: fund.id } });
 };
 </script>

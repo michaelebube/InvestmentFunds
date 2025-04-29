@@ -1,6 +1,6 @@
 <template>
   <div
-    class="border-gray-200 rounded-3xl py-4 sm:py-3 bg-white shadow-sm transition duration-300 ease-in-out border"
+    class="border-gray-100 rounded-3xl py-4 sm:py-3 px-2 bg-white shadow-xl transition duration-300 ease-in-out border"
   >
     <div class="px-5 sm:px-5 flex flex-col">
       <div class="flex items-center gap-7 mb-10 min-h-[100px]">
@@ -48,7 +48,7 @@
       <div
         v-for="item in fundPerformance"
         :key="item.year"
-        class="px-1 mb-3 border-b py-3 text-sm border-gray-200"
+        class="px-1 mb-3 border-b py-3 text-sm border-gray-100"
       >
         <div class="flex justify-between">
           <p class="text-[#082552] font-normal opacity-60">{{ item.year }}</p>
