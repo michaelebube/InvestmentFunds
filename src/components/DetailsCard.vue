@@ -1,6 +1,6 @@
 <template>
   <div
-    class="pt-[120px] sm:pt-[150px] mx-[20px] sm:mx-[40px] md:mx-[30px] xl:mx-[90px] 2xl:mx-[200px]"
+    class="pt-[90px] sm:pt-[150px] mx-[20px] sm:mx-[40px] md:mx-[30px] xl:mx-[90px] 2xl:mx-[200px]"
   >
     <div class="flex gap-2 sm:gap-4 items-center">
       <a
@@ -13,7 +13,7 @@
     </div>
 
     <div
-      class="mt-10 sm:mt-15 grid grid-cols-1 space-y-6 sm:space-y-10 md:space-y-0 md:grid-cols-[67%_33%] sm:gap-x-[65px] md:gap-x-[75px] lg:gap-x-[90px] xl:gap-x-[100px] 2xl:gap-x-[120px]"
+      class="mt-10 sm:mt-15 grid grid-cols-1 space-y-6 sm:space-y-10 md:space-y-0 md:grid-cols-[67%_33%] md:gap-x-[60px] lg:gap-x-[90px] xl:gap-x-[100px] 2xl:gap-x-[120px]"
     >
       <div>
         <div class="sm:flex justify-between sm:items-end md:items-start">
@@ -35,11 +35,9 @@
               </h2>
             </div>
           </div>
-          <button
-            class="bg-[#0066f5] text-white md:text-sm lg:text-lg text-lg py-2 px-6 md:py-[7px] md:px-4 lg:py-2 lg:px-4 xl:py-3 xl:px-8 font-medium rounded-md shadow-lg shadow-custom-blue cursor-pointer hover:shadow-xl transition duration-300 ease-in-out"
-          >
-            Invest Now
-          </button>
+          <BaseButton
+            class="md:text-sm lg:text-lg text-lg py-2 px-6 md:py-[7px] md:px-4 lg:py-2 lg:px-4 xl:py-3 xl:px-8"
+          />
         </div>
         <div class="mt-10 sm:mt-12 md:mt-10 px-1 flex justify-between">
           <div>
@@ -95,7 +93,7 @@
         </div>
       </div>
       <div
-        class="flex flex-col gap-3 md:max-w-[180px] lg:max-w-[240px] xl:max-w-[300px] 2xl:max-w-[330px]"
+        class="flex flex-col gap-3 md:max-w-[175px] lg:max-w-[240px] xl:max-w-[300px] 2xl:max-w-[330px]"
       >
         <h2 class="lg:-my-2 text-lg sm:text-xl font-medium text-[#082552]">
           About
@@ -162,6 +160,7 @@ import {
   formatRiskLevel,
   formatNaira,
 } from "../utils/fundUtils";
+import BaseButton from "./BaseButton.vue";
 
 const props = defineProps(["fund", "returnsPercentage"]);
 const router = useRouter();

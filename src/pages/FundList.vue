@@ -5,12 +5,9 @@
         <InvestmentsTab />
       </div>
 
-      <div v-if="isLoading" class="text-center py-8">
-        <div
-          class="animate-spin rounded-full h-10 w-10 border-b-2 border-blue-500 mx-auto"
-        ></div>
-        <p class="mt-2 text-gray-500">Loading funds...</p>
-      </div>
+      <BaseLoader :show="isLoading">
+        <p class="text-gray-400 text-sm sm:text-lg">Loading funds...</p>
+      </BaseLoader>
 
       <ErrorComp :error="error" />
     </div>
@@ -22,6 +19,7 @@ import { computed, onMounted } from "vue";
 import { useStore } from "vuex";
 
 import InvestmentsTab from "../components/InvestmentsTab.vue";
+import BaseLoader from "../components/BaseLoader.vue";
 
 const store = useStore();
 

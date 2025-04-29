@@ -8,6 +8,8 @@ import ErrorComp from "./components/ErrorComp.vue";
 const app = createApp(App);
 
 app.component("ErrorComp", ErrorComp);
+app.component("BaseButton", () => import("./components/BaseButton.vue"));
+app.component("BaseLoader", () => import("./components/BaseLoader.vue"));
 app.use(router);
 app.use(store);
 app.mount("#app");

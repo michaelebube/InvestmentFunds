@@ -1,9 +1,10 @@
 <template>
   <div class="bg-[#ffffff] min-h-screen">
-    <div v-if="isLoading" class="text-center text-gray-500 py-10 pt-[130px]">
-      Loading fund details...
-    </div>
-    <div v-else-if="fund">
+    <BaseLoader :show="isLoading" class="pt-[120px]">
+      <p class="text-gray-400 text-sm sm:text-lg">Loading fund details...</p>
+    </BaseLoader>
+
+    <div v-if="fund">
       <DetailRow
         :key="$route.params.id"
         :fund="fund"
@@ -28,6 +29,7 @@ import DetailRow from "../components/DetailsCard.vue";
 import { formatPercentage } from "../utils/fundUtils.js";
 
 import InvestmentsTab from "../components/InvestmentsTab.vue";
+import BaseLoader from "../components/BaseLoader.vue";
 
 const route = useRoute();
 
