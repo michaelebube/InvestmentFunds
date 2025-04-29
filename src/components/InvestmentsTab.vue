@@ -98,7 +98,6 @@ const handleTabClick = (tab) => {
 };
 
 watch(selected, (newVal) => {
-  localStorage.setItem("selectedTab", newVal);
   const riskValue = riskMap[newVal];
   store.dispatch("filterByRisk", riskValue);
 });

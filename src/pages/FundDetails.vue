@@ -46,9 +46,11 @@ onMounted(() => {
 
 watch(
   () => route.params.id,
-  async () => {
-    await nextTick();
-    window.scrollTo({ top: 0, behavior: "smooth" });
+  async (newId, oldId) => {
+    if (oldId !== newId) {
+      await nextTick();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
   }
 );
 

@@ -12,10 +12,10 @@ const router = createRouter({
   history: createWebHistory(),
   routes,
   scrollBehavior(to, from, savedPosition) {
-    if (savedPosition) {
-      return savedPosition;
-    } else {
+    if (to.path !== from.path) {
       return { top: 0 };
+    } else {
+      return false;
     }
   },
 });
