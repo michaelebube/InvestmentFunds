@@ -4,8 +4,8 @@ import FundDetail from "../pages/FundDetails.vue";
 
 const routes = [
   { path: "/", component: FundList },
-  { path: "/fund/:id", name: "FundDetail", component: FundDetail },
-  { path: "/:pathMatch(.*)*", redirect: "/" }, // Redirect to FundList for any unmatched routes
+  { path: "/fund/:name", name: "FundDetail", component: FundDetail },
+  { path: "/:pathMatch(.*)*", redirect: "/" },
 ];
 
 const router = createRouter({

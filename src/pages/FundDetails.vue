@@ -26,7 +26,7 @@ import { useRoute } from "vue-router";
 import { useStore } from "vuex";
 import { computed, onMounted, watch, nextTick } from "vue";
 import DetailRow from "../components/DetailsCard.vue";
-import { formatPercentage } from "../utils/fundUtils.js";
+import { formatPercentage, slugify } from "../utils/fundUtils.js";
 
 import InvestmentsTab from "../components/InvestmentsTab.vue";
 import BaseLoader from "../components/BaseLoader.vue";
@@ -53,7 +53,7 @@ watch(
 );
 
 const fund = computed(() =>
-  store.state.funds.find((f) => f.id == route.params.id)
+  store.state.funds.find((f) => slugify(f.name) == route.params.name)
 );
 
 const isLoading = computed(() => {

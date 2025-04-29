@@ -56,10 +56,9 @@ import { ref } from "vue";
 import { computed, watch } from "vue";
 import { useStore } from "vuex";
 import BaseCard from "./BaseCard.vue";
-import { formatPercentage, formatRiskLevel } from "../utils/fundUtils";
+import { formatPercentage, formatRiskLevel, slugify } from "../utils/fundUtils";
 import { onMounted } from "vue";
 import { useRouter } from "vue-router";
-
 const props = defineProps({
   excludeFundId: {
     type: [String],
@@ -104,6 +103,7 @@ const funds = computed(() => {
 
 const goToDetails = (fund) => {
   // store.dispatch("setSelectedFund", fund);
-  router.push({ name: "FundDetail", params: { id: fund.id } });
+  const slugName = slugify(fund.name);
+  router.push({ name: "FundDetail", params: { name: slugName } });
 };
 </script>
