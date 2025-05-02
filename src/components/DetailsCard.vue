@@ -82,7 +82,7 @@
         <div
           v-for="item in fundPerformance"
           :key="item.year"
-          class="px-1 mb-3 border-b py-3 text-[16px] border-gray-200"
+          class="px-1 mb-3 border-b py-3 text-[16px] border-gray-100"
         >
           <div class="flex justify-between">
             <p class="text-[#082552] opacity-60">{{ item.year }}</p>
