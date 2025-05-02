@@ -99,13 +99,13 @@
           About
         </h2>
         <p
-          class="text-[#082552] opacity-65 break-words text-sm font-light md:text-sm lg:text-[16px] sm:text-[16px] mb-[2px]"
+          class="text-[#082552]/80 mt-2 leading-5 opacity-65 break-words text-sm font-normal md:text-sm lg:text-sm sm:text-[16px] mb-1"
         >
           {{ fund.description }}
         </p>
         <div v-for="(item, index) in detailsArray" :key="index">
           <div
-            class="flex justify-between items-center border-b-[0.5px] border-gray-200 py-4 text-sm lg:text-[16px]"
+            class="flex justify-between items-center border-b-[0.5px] border-gray-200 py-4 text-sm lg:text-sm"
           >
             <p class="text-[#082552] opacity-60">{{ item.label }}</p>
             <p class="font-normal text-[#082552]">
@@ -113,8 +113,8 @@
             </p>
           </div>
         </div>
-        <div class="mt-5 mb-6 sm:mt-8">
-          <p class="text-[#082552] opacity-60 mb-5">Fund Composition</p>
+        <div class="mt-5 mb-6 sm:mt-6">
+          <p class="text-[#082552] text-sm opacity-60 mb-5">Fund Composition</p>
           <div
             class="flex items-center h-2 rounded-[2px] overflow-hidden bg-gray-100"
           >
@@ -126,9 +126,7 @@
             ></div>
           </div>
 
-          <div
-            class="mt-4 flex flex-wrap gap-5 sm:grid sm:grid-cols-1 lg:grid-cols-2 sm:gap-[10px]"
-          >
+          <div class="mt-4 flex flex-wrap gap-5 sm:grid sm:grid-cols-1 lg:flex">
             <div
               v-for="(item, index) in fundComposition"
               :key="index"
