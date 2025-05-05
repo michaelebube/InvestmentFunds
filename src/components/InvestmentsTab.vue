@@ -8,9 +8,9 @@
         :key="tab"
         @click="handleTabClick(tab)"
         :class="[
-          'px-2 py-2 hover:cursor-pointer',
+          'px-2 py-2 hover:cursor-pointer ',
           selected === tab
-            ? 'text-blue-600 bg-gray-50  border border-transparent font-semibold rounded-full '
+            ? 'text-blue-600 bg-[#F3F6FF]  border border-transparent font-semibold rounded-full '
             : 'text-gray-500',
         ]"
       >
@@ -56,7 +56,7 @@ import { ref } from "vue";
 import { computed, watch } from "vue";
 import { useStore } from "vuex";
 import BaseCard from "./BaseCard.vue";
-import { formatPercentage, formatRiskLevel, slugify } from "../utils/fundUtils";
+import { formatPercentage, formatRiskLevel } from "../utils/fundUtils";
 import { onMounted } from "vue";
 import { useRouter, useRoute } from "vue-router";
 const props = defineProps({

@@ -44,9 +44,7 @@
             <div class="text-sm sm:text-[16px] text-gray-400">
               {{ fund.is_money_market ? "Annual Returns" : "YTD Returns " }}
             </div>
-            <p
-              class="text-[26px] sm:text-3xl font-semibold text-[#58CC58] mt-1"
-            >
+            <p class="text-[26px] sm:text-3xl font-medium text-[#58CC58] mt-1">
               {{ returnsPercentage }} <span class="text-lg">%</span>
             </p>
           </div>
@@ -71,7 +69,7 @@
           </div>
         </div>
         <div class="mt-14 px-1">
-          <p class="text-gray-400 text-sm mb-4">
+          <p class="text-[#b1bbc9] font-light text-sm mb-4">
             {{
               fund.is_money_market
                 ? "Historical performance of annual returns"
@@ -86,7 +84,7 @@
         >
           <div class="flex justify-between">
             <p class="text-[#082552] opacity-60">{{ item.year }}</p>
-            <p class="text-[#58CC58] font-bold">
+            <p class="text-[#58CC58] font-semibold">
               {{ item.annualReturn }}<span class="text-sm">%</span>
             </p>
           </div>

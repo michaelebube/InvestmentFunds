@@ -1,13 +1,13 @@
 <template>
   <div
-    class="border-gray-100 rounded-3xl py-4 sm:py-3 px-2 bg-white shadow-xl transition duration-300 ease-in-out border"
+    class="border-gray-100 rounded-3xl py-4 sm:py-3 px-[10px] bg-white shadow-xl transition duration-300 ease-in-out border"
   >
     <div class="px-5 sm:px-5 flex flex-col">
       <div class="flex items-center gap-7 mb-10 min-h-[100px]">
         <img
           :src="fund.logo"
           alt="logo"
-          class="h-13 w-13 sm:h-15 sm:w-15 object-contain"
+          class="h-13 w-13 sm:h-14 sm:w-14 object-contain"
           loading="lazy"
         />
         <h2 class="text-xl text-[#082552] sm:text-xl font-semibold">
@@ -57,13 +57,13 @@
           </p>
         </div>
       </div>
-      <div class="px-1 mt-6 mb-3 flex justify-between items-center">
+      <div class="px-1 mt-6 mb-4 flex justify-between items-center">
         <BaseButton
-          class="px-4 py-2 sm:px-8 sm:py-3 lg:px-4 lg:py-3 xl:px-8 xl:py-3"
+          class="px-4 py-2 sm:px-8 sm:py-3 lg:px-4 lg:py-3 xl:px-6 xl:py-4"
         />
         <a
           @click="$emit('goToDetails', fund)"
-          class="text-[#0066f5] font-semibold flex items-center gap-1 cursor-pointer transition duration-300 ease-in-out group"
+          class="text-[#0066f5] font-medium flex items-center gap-1 cursor-pointer transition duration-300 ease-in-out group"
         >
           Learn More
           <span>

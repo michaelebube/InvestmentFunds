@@ -26,7 +26,7 @@ import { useRoute } from "vue-router";
 import { useStore } from "vuex";
 import { computed, onMounted, watch, nextTick } from "vue";
 import DetailRow from "../components/DetailsCard.vue";
-import { formatPercentage, slugify } from "../utils/fundUtils.js";
+import { formatPercentage } from "../utils/fundUtils.js";
 
 import InvestmentsTab from "../components/InvestmentsTab.vue";
 import BaseLoader from "../components/BaseLoader.vue";
@@ -37,6 +37,7 @@ const store = useStore();
 const error = computed(() => store.state.error);
 
 onMounted(() => {
+  console.group("this is mounted");
   if (!store.state.funds.length) {
     store.dispatch("fetchFunds", {
       customErrorMessage: "Failed to fetch fund details. Please try again.",

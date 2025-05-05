@@ -38,21 +38,26 @@ export function formatNaira(amount) {
   if (typeof amount !== "number") return "";
 
   const nairaAmount = amount / 100;
-  const billions = nairaAmount / 1000000000;
 
-  return (
-    "₦ " +
-    billions.toLocaleString(undefined, {
-      minimumFractionDigits: 1,
-      maximumFractionDigits: 1,
-    }) +
-    "B"
-  );
-}
-
-export function slugify(text) {
-  return text
-    .toLowerCase()
-    .replace(/\s+/g, "-")
-    .replace(/[^\w-]+/g, "");
+  if (nairaAmount >= 1000000000) {
+    const billions = nairaAmount / 1000000000;
+    return (
+      "₦ " +
+      billions.toLocaleString(undefined, {
+        minimumFractionDigits: 1,
+        maximumFractionDigits: 1,
+      }) +
+      "B"
+    );
+  } else {
+    const millions = nairaAmount / 1000000;
+    return (
+      "₦ " +
+      millions.toLocaleString(undefined, {
+        minimumFractionDigits: 1,
+        maximumFractionDigits: 1,
+      }) +
+      "M"
+    );
+  }
 }

@@ -1,5 +1,5 @@
 <template>
-  <div
+  <nav
     class="flex bg-white fixed shadow-md items-center w-full h-[70px] sm:h-[75px] lg:h-[90px] z-10"
   >
     <a
@@ -10,5 +10,5 @@
     >
       <img src="/svg/cowrywise.svg" alt="Cowrywise Logo" />
     </a>
-  </div>
+  </nav>
 </template>
