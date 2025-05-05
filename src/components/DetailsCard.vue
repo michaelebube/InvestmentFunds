@@ -158,7 +158,16 @@ import {
 } from "../utils/fundUtils";
 import BaseButton from "./BaseButton.vue";
 
-const props = defineProps(["fund", "returnsPercentage"]);
+const props = defineProps({
+  fund: {
+    type: Object,
+    required: true,
+  },
+  returnsPercentage: {
+    type: Number,
+    required: true,
+  },
+});
 const router = useRouter();
 
 const fundPerformance = computed(() => {
