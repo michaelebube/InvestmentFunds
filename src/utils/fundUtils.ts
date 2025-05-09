@@ -1,22 +1,23 @@
-export function formatPercentage(returns) {
+export function formatPercentage(returns: string | null | undefined) {
   if (returns === null || returns === undefined) {
     return "N/A";
   }
   return (parseFloat(returns) * 100).toFixed(2);
 }
 
-export function formatRiskLevel(risk) {
-  const riskLevel = Number(risk);
-  if (riskLevel === 3) {
+export function formatRiskLevel(risk: number) {
+  if (risk === 3) {
     return "Growth";
-  } else if (riskLevel === 2) {
+  } else if (risk === 2) {
     return "Moderate";
   } else {
     return "Conservative";
   }
 }
 
-export function formatReturnsPayment(returnsPaymentSchedule) {
+export function formatReturnsPayment(
+  returnsPaymentSchedule: number | null | undefined
+): string | undefined {
   if (returnsPaymentSchedule === null || returnsPaymentSchedule === undefined) {
     return "N/A";
   }
@@ -34,7 +35,7 @@ export function formatReturnsPayment(returnsPaymentSchedule) {
   }
 }
 
-export function formatNaira(amount) {
+export function formatNaira(amount: number): string {
   if (typeof amount !== "number") return "";
 
   const nairaAmount = amount / 100;

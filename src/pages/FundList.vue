@@ -14,16 +14,18 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { computed, onMounted } from "vue";
 import { useStore } from "vuex";
-
 import InvestmentsTab from "../components/InvestmentsTab.vue";
 import BaseLoader from "../components/BaseLoader.vue";
+import ErrorComp from "../components/ErrorComp.vue";
+import type { State } from "../store/types";
 
-const store = useStore();
+const store = useStore<State>();
 
 const error = computed(() => store.state.error);
+const isLoading = computed<boolean>(() => store.getters.isLoading);
 
 onMounted(() => {
   if (!store.state.funds.length) {
@@ -32,6 +34,4 @@ onMounted(() => {
     });
   }
 });
-
-const isLoading = computed(() => store.getters.isLoading);
 </script>

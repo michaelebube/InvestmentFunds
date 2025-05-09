@@ -7,6 +7,8 @@
   </div>
 </template>
 
-<script setup>
-defineProps(["error"]);
+<script setup lang="ts">
+defineProps<{
+  error: string | null;
+}>();
 </script>

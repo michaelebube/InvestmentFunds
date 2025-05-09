@@ -7,11 +7,6 @@
   </div>
 </template>
 
-<script setup>
-const props = defineProps({
-  show: {
-    type: Boolean,
-    default: false,
-  },
-});
+<script setup lang="ts">
+defineProps<{ show: boolean }>();
 </script>

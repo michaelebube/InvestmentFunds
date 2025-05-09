@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "target": "esnext", // Use modern JavaScript (ESNext features)
+    "module": "esnext", // Enable ES module imports
+    "moduleResolution": "node", // Resolve modules like Node.js does
+    "lib": ["esnext", "dom"], // Include ESNext and DOM for browser-related types
+    "allowJs": true, // Allow JavaScript files to be compiled
+    "jsx": "preserve", // Enable JSX support for Vue with TS
+    "strict": true, // Enable strict type-checking options
+    "esModuleInterop": true, // Allows default imports from CommonJS modules
+    "skipLibCheck": true, // Skip type checking of declaration files
+    "forceConsistentCasingInFileNames": true // Ensure consistent casing in file names
+  },
+  "include": [
+    "src/**/*" // Include all TypeScript/JS files in the 'src' folder
+  ],
+  "exclude": [
+    "node_modules", // Exclude node_modules from the compilation
+    "dist" // Exclude dist folder from compilation
+  ],
+  "extends": "@vue/tsconfig/tsconfig.json" // Inherit configurations from Vue’s recommended tsconfig
+}

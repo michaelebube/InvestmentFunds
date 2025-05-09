@@ -6,7 +6,7 @@
 
     <div v-if="fund">
       <DetailRow
-        :key="$route.params.id"
+        :key="String($route.params.id)"
         :fund="fund"
         :returnsPercentage="formatPercentage(fund.returns)"
       />
@@ -15,25 +15,26 @@
     <div v-else class="pt-[150px]">
       <ErrorComp :error="error" />
     </div>
+
     <div v-if="fund" class="mt-15 sm:mt-0 mb-15">
       <InvestmentsTab :excludeFundId="fund?.id" />
     </div>
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { useRoute } from "vue-router";
 import { useStore } from "vuex";
 import { computed, onMounted, watch, nextTick } from "vue";
 import DetailRow from "../components/DetailsCard.vue";
-import { formatPercentage } from "../utils/fundUtils.js";
-
 import InvestmentsTab from "../components/InvestmentsTab.vue";
 import BaseLoader from "../components/BaseLoader.vue";
+import { formatPercentage } from "../utils/fundUtils.ts";
+import type { State } from "../store/types";
 
 const route = useRoute();
+const store = useStore<State>();
 
-const store = useStore();
 const error = computed(() => store.state.error);
 
 onMounted(() => {
@@ -59,9 +60,7 @@ const fund = computed(() =>
   store.state.funds.find((f) => f.id == route.params.id)
 );
 
-const isLoading = computed(() => {
-  return store.state.isLoading;
-});
+const isLoading = computed<boolean>(() => store.state.isLoading);
 
 watch(isLoading, (newVal) => {
   console.log("Loading state changed:", newVal);
