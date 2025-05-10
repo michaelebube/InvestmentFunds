@@ -7,7 +7,7 @@
         <img
           :src="fund.logo"
           alt="logo"
-          class="h-13 w-13 sm:h-14 sm:w-14 object-contain"
+          class="h-13 w-13 sm:h-14 sm:w-14 rounded-full object-contain"
           loading="lazy"
         />
         <h2 class="text-xl text-[#082552] sm:text-xl font-semibold">
@@ -77,16 +77,29 @@
   </div>
 </template>
 
-<script setup>
-const props = defineProps(["fund", "returnsPercentage"]);
+<script setup lang="ts">
 import { computed } from "vue";
-import { formatPercentage } from "../utils/fundUtils";
+import { formatPercentage } from "../utils/fundUtils.ts";
 import RightArrow from "./RightArrow.vue";
 import BaseButton from "./BaseButton.vue";
+import type { Fund } from "../store/types";
 
-defineEmits(["goToDetails"]);
+defineEmits<{
+  (e: "goToDetails", fund: Fund): void;
+}>();
 
-const fundPerformance = computed(() => {
+const props = defineProps<{
+  fund: Fund;
+  returnsPercentage: string;
+}>();
+
+const fundPerformance = computed<
+  | {
+      year: number;
+      annualReturn: string;
+    }[]
+  | []
+>(() => {
   return props.fund.is_money_market
     ? props.fund.performance
         ?.filter((item) => item.year >= 2021 && item.year <= 2023)

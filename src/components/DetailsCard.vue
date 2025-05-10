@@ -1,6 +1,6 @@
 <template>
   <div
-    class="pt-[90px] sm:pt-[150px] mx-[20px] sm:mx-[40px] md:mx-[30px] xl:mx-[90px] 2xl:mx-[200px]"
+    class="pt-[90px] sm:pt-[120px] lg:pt-[140px] mx-[20px] sm:mx-[40px] md:mx-[30px] xl:mx-[90px] 2xl:mx-[200px]"
   >
     <div class="flex gap-2 sm:gap-4 items-center">
       <a
@@ -146,7 +146,7 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { computed } from "vue";
 import RightArrow from "./RightArrow.vue";
 import { useRouter } from "vue-router";
@@ -155,22 +155,23 @@ import {
   formatReturnsPayment,
   formatRiskLevel,
   formatNaira,
-} from "../utils/fundUtils";
+} from "../utils/fundUtils.ts";
+import type { Fund } from "../store/types";
 import BaseButton from "./BaseButton.vue";
 
-const props = defineProps({
-  fund: {
-    type: Object,
-    required: true,
-  },
-  returnsPercentage: {
-    type: Number,
-    required: true,
-  },
-});
+const props = defineProps<{
+  fund: Fund;
+  returnsPercentage: string;
+}>();
+
 const router = useRouter();
 
-const fundPerformance = computed(() => {
+const fundPerformance = computed<
+  {
+    year: number;
+    annualReturn: string;
+  }[]
+>(() => {
   return props.fund.is_money_market
     ? props.fund.performance
         ?.filter((item) => item.year >= 2021 && item.year <= 2023)
@@ -181,40 +182,46 @@ const fundPerformance = computed(() => {
     : [];
 });
 
-const truncate = (str, maxLength = 18) => {
+const truncate = (str: string, maxLength = 18): string => {
   if (!str) return "";
   return str.length > maxLength ? str.slice(0, maxLength) + "..." : str;
 };
 
-const detailsArray = computed(() => {
-  return [
-    { label: "Risk Level", value: formatRiskLevel(props.fund.risk) },
-    {
-      label: "Custodian",
-      value: truncate(props.fund.custodian),
-    },
-    { label: "Fund Size", value: formatNaira(props.fund.size_in_kobo) },
-    {
-      label: "Returns Payment",
-      value: formatReturnsPayment(props.fund.returns_model),
-    },
-  ];
-});
+const detailsArray = computed(
+  (): { label: string; value: string | undefined }[] => {
+    return [
+      { label: "Risk Level", value: formatRiskLevel(props.fund.risk) },
+      {
+        label: "Custodian",
+        value: truncate(props.fund.custodian),
+      },
+      { label: "Fund Size", value: formatNaira(props.fund.size_in_kobo) },
+      {
+        label: "Returns Payment",
+        value: formatReturnsPayment(props.fund.returns_model),
+      },
+    ];
+  }
+);
 const colors = ["#A2E3FC", "#0066F5", "#082552", "#BEE8BA"];
 
-const fundComposition = computed(() => {
-  if (!props.fund.composition || typeof props.fund.composition !== "object") {
-    return [];
+const fundComposition = computed(
+  (): { key: string; value: string; color: string }[] => {
+    if (!props.fund.composition || typeof props.fund.composition !== "object") {
+      return [];
+    }
+
+    return Object.entries(props.fund.composition).map(
+      ([key, value], index) => ({
+        key,
+        value,
+        color: colors[index],
+      })
+    );
   }
+);
 
-  return Object.entries(props.fund.composition).map(([key, value], index) => ({
-    key,
-    value,
-    color: colors[index],
-  }));
-});
-
-const goBack = () => {
+const goBack = (): void => {
   router.push("/");
 };
 </script>
