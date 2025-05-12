@@ -156,7 +156,7 @@ import {
   formatRiskLevel,
   formatNaira,
 } from "../utils/fundUtils.ts";
-import type { Fund } from "../store/types";
+import type { Fund } from "../types/types.ts";
 import BaseButton from "./BaseButton.vue";
 
 const props = defineProps<{

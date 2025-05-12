@@ -30,7 +30,7 @@ import DetailRow from "../components/DetailsCard.vue";
 import InvestmentsTab from "../components/InvestmentsTab.vue";
 import BaseLoader from "../components/BaseLoader.vue";
 import { formatPercentage } from "../utils/fundUtils.ts";
-import type { State } from "../store/types";
+import type { State } from "../types/types.ts";
 
 const route = useRoute();
 const store = useStore<State>();

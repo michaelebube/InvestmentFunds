@@ -82,7 +82,7 @@ import { computed } from "vue";
 import { formatPercentage } from "../utils/fundUtils.ts";
 import RightArrow from "./RightArrow.vue";
 import BaseButton from "./BaseButton.vue";
-import type { Fund } from "../store/types";
+import type { Fund } from "../types/types.ts";
 
 defineEmits<{
   (e: "goToDetails", fund: Fund): void;

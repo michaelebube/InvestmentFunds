@@ -20,7 +20,7 @@ import { useStore } from "vuex";
 import InvestmentsTab from "../components/InvestmentsTab.vue";
 import BaseLoader from "../components/BaseLoader.vue";
 import ErrorComp from "../components/ErrorComp.vue";
-import type { State } from "../store/types";
+import type { State } from "../types/types";
 
 const store = useStore<State>();
 

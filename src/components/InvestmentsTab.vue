@@ -57,7 +57,7 @@ import { useStore } from "vuex";
 import { useRouter, useRoute } from "vue-router";
 import BaseCard from "./BaseCard.vue";
 import { formatPercentage, formatRiskLevel } from "../utils/fundUtils.ts";
-import type { State, Fund } from "../store/types";
+import type { State, Fund } from "../types/types.ts";
 
 const props = defineProps<{
   excludeFundId?: string | null;

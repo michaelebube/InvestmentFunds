@@ -1,6 +1,6 @@
 import { createStore } from "vuex";
 import axios from "axios";
-import type { Fund, State } from "./types"; // Adjust the import path as necessary
+import type { Fund, State } from "../types/types"; // Adjust the import path as necessary
 
 // Define types for fund and performance
 
